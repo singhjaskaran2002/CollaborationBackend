@@ -15,6 +15,7 @@ public interface JobDAO
 	public Job getJob(int jobid);
 	public List<Job> jobList();
 	public List<Job> jobList(char jobstatus);
+	public boolean isJobOpened(int jobid);
 	
 	//for applying to the particular job
 	

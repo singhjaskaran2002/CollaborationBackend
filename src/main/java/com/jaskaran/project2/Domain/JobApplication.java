@@ -18,7 +18,7 @@ public class JobApplication
 	@Id
 	//@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int jobappid;
-	private String jobappemail;
+	private String email;
 	private int jobid;
 	private Date applied_date;
 	private char jobappstatus;
@@ -31,11 +31,11 @@ public class JobApplication
 	public void setJobappid(int jobappid) {
 		this.jobappid = jobappid;
 	}
-	public String getJobappemail() {
-		return jobappemail;
+	public String getEmail() {
+		return email;
 	}
-	public void setJobappemail(String jobappemail) {
-		this.jobappemail = jobappemail;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public int getJobid() {
 		return jobid;

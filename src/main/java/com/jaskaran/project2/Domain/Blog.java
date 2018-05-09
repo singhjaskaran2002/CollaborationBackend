@@ -3,6 +3,7 @@ package com.jaskaran.project2.Domain;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -10,8 +11,9 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "C_BLOG")
-public class Blog {
-	
+public class Blog 
+{
+	@Id
 	private int blogid;
 	private String blogtitle;
 	private String email;

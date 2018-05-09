@@ -1,5 +1,6 @@
 package com.jaskaran.project2.DAOImplement;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.jaskaran.project2.DAO.JobDAO;
+import com.jaskaran.project2.DAO.UserDAO;
 import com.jaskaran.project2.Domain.Job;
 import com.jaskaran.project2.Domain.JobApplication;
 
@@ -20,6 +22,9 @@ public class JobDAOImplementation implements JobDAO
 {
 	@Autowired
 	SessionFactory sessionFactory;
+	
+	@Autowired
+	private UserDAO userDAO;
 	
 	public boolean saveJob(Job job) {
 		try {
@@ -54,9 +59,49 @@ public class JobDAOImplementation implements JobDAO
 	public List<Job> jobList(char jobstatus) {
 		return sessionFactory.getCurrentSession().createCriteria(Job.class).add(Restrictions.eq("jobstatus", jobstatus)).list();
 	}
+	
+	private int getMaxJobapplicationID() {
+		int maxValue = 100;
+		try {
+			maxValue = (Integer) sessionFactory.getCurrentSession().createQuery("select max(id) from JobApplication").uniqueResult();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 100;
+		}
+		return maxValue;
+	}	
 
 	public boolean saveJobApplication(JobApplication jobApplication) {
 		try {
+			
+			
+			if (!isJobOpened(jobApplication.getJobid())) {
+				return false;
+			}
+			// if you already applied, you can not apply again
+			if (isJobAlreadyApplied(jobApplication.getEmail(), jobApplication.getJobid())) {
+				return false;
+			}
+			
+			//if user does not exist, you can not apply
+			
+			if(userDAO.getUser(jobApplication.getEmail())==null)
+			{
+				return false;
+			}
+			
+			//if the job does not exist, you can not apply
+			if(getJob(jobApplication.getJobid())==null)
+			{
+				return false;
+			}
+
+			jobApplication.setJobid(getMaxJobapplicationID() + 1);
+			jobApplication.setJobappstatus('N');
+			jobApplication.setApplied_date(new Date());
+			
+			
 			sessionFactory.getCurrentSession().save(jobApplication);
 			return true;
 		} catch (HibernateException e) {

@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 public class Job 
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	//@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int jobid;
 	private String jobtitle;
 	private String jobdescription;
