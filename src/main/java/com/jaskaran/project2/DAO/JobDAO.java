@@ -12,6 +12,7 @@ public interface JobDAO
 {
 	public boolean saveJob(Job job);
 	public boolean updateJob(Job job);
+	public boolean deleteJob(int jobid);
 	public Job getJob(int jobid);
 	public List<Job> jobList();
 	public List<Job> jobList(char jobstatus);
@@ -24,4 +25,5 @@ public interface JobDAO
 	public List<JobApplication> list(int jobid);	// for fetching list of total jobapplications for a particular job based on job id 
 	public List<JobApplication> list(int jobid, char jobstatus);
 	public  boolean isJobAlreadyApplied(String email, int jobid);
+	public List<JobApplication> userAppliedJobList(String email);
 }

@@ -46,5 +46,18 @@ public class UserDAOTestCase
 		assertEquals("add user test case", true, flag);
 	}
 	
+/*	public void addUserTestCase()
+	{
+		user.setUsername("Jaskaran Singh");
+		user.setEmail("jaskaran@gmail.com");
+		user.setMobile("9711131492");
+		user.setPassword("jaskaran");
+		user.setStatus('N');
+		user.setRole('S');
+		
+		boolean flag = userDAO.saveUser(user);
+		
+		assertEquals("add user test case", true, flag);
+	}*/
 	
 }

@@ -40,14 +40,78 @@ public class JobDAOTestCase
 	@Test
 	public void jobAddTestCase()
 	{
-		job.setJobtitle("Software Developer");
-		//job.setJobdescription("developing software using spring mvc");
+		job.setJobtitle("BackEnd Developer");
+		job.setJobdescription("developing software using spring mvc");
 		job.setJobqualification("MCA");
-		job.setJobsalary(200000);
-		job.setNo_of_openings(3);
-		//job.setJobid(101);
+		job.setJobsalary(300000);
+		job.setNo_of_openings(2);
 		
 		assertEquals("job Add Test Case", true, jobDAO.saveJob(job));
 	}
 	
+	@Test
+	public void deleteJobTestCase()
+	{
+		assertEquals("job delete test case", true, jobDAO.deleteJob(102));
+	}
+	
+
+	@Test
+	public void getJobSuccessTestCase()
+	{
+		assertNotNull(jobDAO.getJob(101));
+	}
+	
+	@Test
+	public void getJobFailureTestCase()
+	{
+		//assertNotNull(jobDAO.getJob(400));
+		assertNull(jobDAO.getJob(400));
+	}
+	
+	@Test
+	public void jobListTestCase()
+	{
+		assertEquals(2, jobDAO.jobList().size());
+	}
+	
+	@Test
+	public void jobClosingTestCase()
+	{
+		job	= jobDAO.getJob(101);
+		job.setJobstatus('C');
+		assertEquals("updating job test case", true ,jobDAO.updateJob(job));
+	}
+	
+	@Test
+	public void isJobOpendSuccessTestCase()
+	{
+	   assertEquals("JobOpened Success test case", true, jobDAO.isJobOpened(103));
+	}
+	
+	@Test
+	public void isJobOpendFailureTestCase()
+	{
+	   assertEquals("JobOpened failure test case", false, jobDAO.isJobOpened(101));
+	}
+	
+	
+	
+	//Related to Job Application
+	
+	
+	@Test
+	public void applyForJobSuccessTestCase()
+	{
+		jobApplication.setEmail("jaskaran@gmail.com");
+		jobApplication.setJobid(103);
+		
+		assertEquals("apply for job success test case", true, jobDAO.saveJobApplication(jobApplication));
+	}
+	
+	@Test 
+	public void isJobAlreadyAppliedTestCase()
+	{
+		assertEquals("is job already applied", true, jobDAO.isJobAlreadyApplied("jaskaran@gmail.com", 101));
+	}
 }

@@ -1,5 +1,7 @@
 package com.jaskaran.project2.Domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -9,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "C_USER")
-public class User 
+public class User extends BaseDomain implements Serializable
 {
 	@Id
 	private String email;

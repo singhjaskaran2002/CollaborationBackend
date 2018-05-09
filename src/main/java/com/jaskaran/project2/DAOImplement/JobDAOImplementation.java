@@ -26,8 +26,24 @@ public class JobDAOImplementation implements JobDAO
 	@Autowired
 	private UserDAO userDAO;
 	
+	private int getMaxJobID() {
+		int maxValue = 100;
+		try {
+			maxValue = (Integer) sessionFactory.getCurrentSession().createQuery("select max(jobid) from Job").uniqueResult();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 100;
+		}
+
+		return maxValue;
+	}
+	
 	public boolean saveJob(Job job) {
 		try {
+			job.setJobid(getMaxJobID() + 1);
+			job.setJob_posted_date(new Date());
+			job.setJobstatus('N');
 			sessionFactory.getCurrentSession().save(job);
 			return true;
 		} catch (HibernateException e) {
@@ -63,7 +79,7 @@ public class JobDAOImplementation implements JobDAO
 	private int getMaxJobapplicationID() {
 		int maxValue = 100;
 		try {
-			maxValue = (Integer) sessionFactory.getCurrentSession().createQuery("select max(id) from JobApplication").uniqueResult();
+			maxValue = (Integer) sessionFactory.getCurrentSession().createQuery("select max(jobappid) from JobApplication").uniqueResult();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -71,44 +87,51 @@ public class JobDAOImplementation implements JobDAO
 		}
 		return maxValue;
 	}	
+	
+	public boolean isJobOpened(int jobid) {
+		Job job = (Job) sessionFactory.getCurrentSession().createCriteria(Job.class).add(Restrictions.eq("jobid", jobid)).uniqueResult();
+
+		if (job != null && job.getJobstatus() == 'N') {
+			return true;
+		}
+		return false;
+	}
 
 	public boolean saveJobApplication(JobApplication jobApplication) {
 		try {
+				if (isJobOpened(jobApplication.getJobid()) == false) {
+					return false;
+				}
 			
+				// if you already applied, you can not apply again
+				if (isJobAlreadyApplied(jobApplication.getEmail(), jobApplication.getJobid())) {
+					return false;
+				}
 			
-			if (!isJobOpened(jobApplication.getJobid())) {
-				return false;
-			}
-			// if you already applied, you can not apply again
-			if (isJobAlreadyApplied(jobApplication.getEmail(), jobApplication.getJobid())) {
-				return false;
-			}
+				//if user does not exist, you can not apply
+				if(userDAO.getUser(jobApplication.getEmail()) == null)
+				{
+					return false;
+				}
 			
-			//if user does not exist, you can not apply
-			
-			if(userDAO.getUser(jobApplication.getEmail())==null)
-			{
-				return false;
-			}
-			
-			//if the job does not exist, you can not apply
-			if(getJob(jobApplication.getJobid())==null)
-			{
-				return false;
-			}
+				//if the job does not exist, you can not apply
+				if(getJob(jobApplication.getJobid())==null)
+				{
+					return false;
+				}
 
-			jobApplication.setJobid(getMaxJobapplicationID() + 1);
-			jobApplication.setJobappstatus('N');
-			jobApplication.setApplied_date(new Date());
-			
-			
-			sessionFactory.getCurrentSession().save(jobApplication);
-			return true;
-		} catch (HibernateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
+				jobApplication.setJobappid(getMaxJobapplicationID() + 1);
+				jobApplication.setJobappstatus('N');
+				jobApplication.setApplied_date(new Date());
+	
+				sessionFactory.getCurrentSession().save(jobApplication);
+				return true;
+				
+				} catch (HibernateException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					return false;
+				}
 	}
 
 	public boolean update(JobApplication jobApplication) {
@@ -130,17 +153,6 @@ public class JobDAOImplementation implements JobDAO
 		return sessionFactory.getCurrentSession().createCriteria(Job.class).add(Restrictions.eq("jobstatus", jobstatus)).add(Restrictions.eq("jobid", jobid)).list();
 	}
 
-	public boolean isJobOpened(int jobid) {
-		Job job = (Job) sessionFactory.getCurrentSession().createCriteria(Job.class).add(Restrictions.eq("jobid", jobid)).uniqueResult();
-
-		if (job != null && job.getJobstatus() == 'N') {
-			return true;
-		}
-
-		return false;
-
-	}
-
 	/**
 	 * This method will return true if the job already applied with this emaild.
 	 * else, return false
@@ -158,6 +170,22 @@ public class JobDAOImplementation implements JobDAO
 			return false;
 		}
 		return true;
-
 	}
+
+	public List<JobApplication> userAppliedJobList(String email) {
+		return sessionFactory.getCurrentSession().createCriteria(JobApplication.class).add(Restrictions.eq("email", email)).list();
+	}
+
+	public boolean deleteJob(int jobid) {
+		try {
+			sessionFactory.getCurrentSession().delete(getJob(jobid));
+			return true;
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	
 }
