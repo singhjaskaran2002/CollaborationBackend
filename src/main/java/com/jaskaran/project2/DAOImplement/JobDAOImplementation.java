@@ -123,7 +123,11 @@ public class JobDAOImplementation implements JobDAO
 				jobApplication.setJobappid(getMaxJobapplicationID() + 1);
 				jobApplication.setJobappstatus('N');
 				jobApplication.setApplied_date(new Date());
-	
+				if(jobApplication.getReason() == null || jobApplication.getReason() == " ")
+				{
+					jobApplication.setReason("Interested");
+				}
+				
 				sessionFactory.getCurrentSession().save(jobApplication);
 				return true;
 				
@@ -134,7 +138,7 @@ public class JobDAOImplementation implements JobDAO
 				}
 	}
 
-	public boolean update(JobApplication jobApplication) {
+	public boolean updateJobApplication(JobApplication jobApplication) {
 		try {
 			sessionFactory.getCurrentSession().update(jobApplication);
 			return true;
@@ -145,11 +149,11 @@ public class JobDAOImplementation implements JobDAO
 		}
 	}
 
-	public List<JobApplication> list(int jobid) {
+	public List<JobApplication> jobApplicationlist(int jobid) {
 		return sessionFactory.getCurrentSession().createCriteria(JobApplication.class).add(Restrictions.eq("jobid", jobid)).list();
 	}
 
-	public List<JobApplication> list(int jobid, char jobstatus) {
+	public List<JobApplication> jobApplicationlist(int jobid, char jobstatus) {
 		return sessionFactory.getCurrentSession().createCriteria(Job.class).add(Restrictions.eq("jobstatus", jobstatus)).add(Restrictions.eq("jobid", jobid)).list();
 	}
 
@@ -172,7 +176,7 @@ public class JobDAOImplementation implements JobDAO
 		return true;
 	}
 
-	public List<JobApplication> userAppliedJobList(String email) {
+	public List<JobApplication> jobApplicationList(String email) {
 		return sessionFactory.getCurrentSession().createCriteria(JobApplication.class).add(Restrictions.eq("email", email)).list();
 	}
 

@@ -59,7 +59,10 @@ public class JobDAOTestCase
 	@Test
 	public void getJobSuccessTestCase()
 	{
-		assertNotNull(jobDAO.getJob(101));
+		Job job = jobDAO.getJob(101);
+		assertNotNull(job);
+		System.out.println(job.getJobid()+" "+job.getJobdescription()+" "+job.getJobtitle());	
+		
 	}
 	
 	@Test

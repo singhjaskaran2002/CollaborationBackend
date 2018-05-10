@@ -1,5 +1,6 @@
 package com.jaskaran.project2.Domain;
 
+import java.io.Serializable;
 import java.sql.Clob;
 import java.util.Date;
 
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "C_JOB")
-public class Job 
+public class Job extends BaseDomain implements Serializable
 {
 	@Id
 	//@GeneratedValue(strategy = GenerationType.SEQUENCE)

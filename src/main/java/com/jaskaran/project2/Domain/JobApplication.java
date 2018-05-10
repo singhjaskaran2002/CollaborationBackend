@@ -1,5 +1,6 @@
 package com.jaskaran.project2.Domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "C_JOB_APPLICATION")
-public class JobApplication 
+public class JobApplication extends BaseDomain implements Serializable
 {
 	@Id
 	//@GeneratedValue(strategy = GenerationType.SEQUENCE)
