@@ -22,9 +22,9 @@ public class UserDAOImplementation implements UserDAO
 	public boolean saveUser(User user) {
 		
 		try {
-			if(user.getRole()==null || user.getRole()==' ')
+			if(user.getRole()==null || user.getRole()==" ")
 			{
-				user.setRole('S');
+				user.setRole("ROLE_USER");
 			}
 			user.setStatus('N');
 			
@@ -83,6 +83,10 @@ public class UserDAOImplementation implements UserDAO
 				.add(Restrictions.eq("email", email))
 				.add(Restrictions.eq("password", password)).uniqueResult();
 		return user;
+	}
+
+	public User getUserByName(String username) {
+		return (User) sessionFactory.getCurrentSession().createQuery("from User where username = '"+username+"'").uniqueResult();
 	}
 
 }

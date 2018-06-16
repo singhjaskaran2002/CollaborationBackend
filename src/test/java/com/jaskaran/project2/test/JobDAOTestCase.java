@@ -106,8 +106,8 @@ public class JobDAOTestCase
 	@Test
 	public void applyForJobSuccessTestCase()
 	{
-		jobApplication.setEmail("jaskaran@gmail.com");
-		jobApplication.setJobid(103);
+		jobApplication.setEmail("singhjaskaran@gmail.com");
+		jobApplication.setJobid(101);
 		
 		assertEquals("apply for job success test case", true, jobDAO.saveJobApplication(jobApplication));
 	}

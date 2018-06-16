@@ -17,10 +17,9 @@ public class User extends BaseDomain implements Serializable
 	private String email;
 	private String password;
 	private String username;
-	private String details;
-	private Character role;
+	private String address;
+	private String role;
 	private Character status;
-	private String reason;
 	private String mobile;
 	
 	public String getMobile() {
@@ -47,16 +46,17 @@ public class User extends BaseDomain implements Serializable
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getDetails() {
-		return details;
+
+	public String getAddress() {
+		return address;
 	}
-	public void setDetails(String details) {
-		this.details = details;
+	public void setAddress(String address) {
+		this.address = address;
 	}
-	public Character getRole() {
+	public String getRole() {
 		return role;
 	}
-	public void setRole(Character role) {
+	public void setRole(String role) {
 		this.role = role;
 	}
 	public Character getStatus() {
@@ -65,10 +65,5 @@ public class User extends BaseDomain implements Serializable
 	public void setStatus(Character status) {
 		this.status = status;
 	}
-	public String getReason() {
-		return reason;
-	}
-	public void setReason(String reason) {
-		this.reason = reason;
-	}
+	
 }

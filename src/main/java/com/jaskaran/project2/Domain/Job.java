@@ -1,16 +1,12 @@
 package com.jaskaran.project2.Domain;
 
 import java.io.Serializable;
-import java.sql.Clob;
 import java.util.Date;
-
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import org.springframework.stereotype.Component;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Component
 @Entity
@@ -18,7 +14,6 @@ import org.springframework.stereotype.Component;
 public class Job extends BaseDomain implements Serializable
 {
 	@Id
-	//@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int jobid;
 	private String jobtitle;
 	private String jobdescription;
@@ -26,9 +21,8 @@ public class Job extends BaseDomain implements Serializable
 	private int jobsalary;
 	private char jobstatus;
 	private int no_of_openings;
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
 	private Date job_posted_date;
-	
-	
 	
 	public int getJobid() {
 		return jobid;

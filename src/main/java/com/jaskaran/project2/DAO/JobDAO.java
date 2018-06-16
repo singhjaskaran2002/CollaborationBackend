@@ -21,10 +21,9 @@ public interface JobDAO
 	//for applying to the particular job
 	
 	public boolean saveJobApplication(JobApplication jobApplication);						//done
-	public boolean updateJobApplication(JobApplication jobApplication); // if admin needs to change the status of jobapplication (accept/reject/call for interview)
-	public List<JobApplication> jobApplicationlist(int jobid);	// for fetching list of total jobapplications for a particular job based on job id 
+	public boolean updateJobApplication(JobApplication jobApplication); 		// if admin needs to change the status of jobapplication (accept/reject/call for interview)
+	public List<JobApplication> jobApplicationlist(int jobid);					// for fetching list of total jobapplications for a particular job based on job id 
 	public List<JobApplication> jobApplicationlist(int jobid, char jobstatus);
 	public  boolean isJobAlreadyApplied(String email, int jobid);
-	public List<JobApplication> jobApplicationList(String email);
-	//public List<JobApplication> jobApplicationList();						//done
+	public List<JobApplication> jobApplicationList(String email);			//done
 }

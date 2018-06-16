@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.jaskaran.project2.DAO.JobDAO;
-import com.jaskaran.project2.DAO.UserDAO;
 import com.jaskaran.project2.Domain.Job;
 import com.jaskaran.project2.Domain.JobApplication;
 
@@ -23,20 +22,16 @@ public class JobDAOImplementation implements JobDAO
 	@Autowired
 	SessionFactory sessionFactory;
 	
-	@Autowired
-	private UserDAO userDAO;
-	
 	private int getMaxJobID() {
 		int maxValue = 100;
 		try {
-			maxValue = (Integer) sessionFactory.getCurrentSession().createQuery("select max(jobid) from Job").uniqueResult();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return 100;
-		}
-
-		return maxValue;
+				maxValue = (Integer) sessionFactory.getCurrentSession().createQuery("select max(jobid) from Job").uniqueResult();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return 100;
+			}
+			return maxValue;
 	}
 	
 	public boolean saveJob(Job job) {
@@ -99,27 +94,6 @@ public class JobDAOImplementation implements JobDAO
 
 	public boolean saveJobApplication(JobApplication jobApplication) {
 		try {
-				if (isJobOpened(jobApplication.getJobid()) == false) {
-					return false;
-				}
-			
-				// if you already applied, you can not apply again
-				if (isJobAlreadyApplied(jobApplication.getEmail(), jobApplication.getJobid())) {
-					return false;
-				}
-			
-				//if user does not exist, you can not apply
-				if(userDAO.getUser(jobApplication.getEmail()) == null)
-				{
-					return false;
-				}
-			
-				//if the job does not exist, you can not apply
-				if(getJob(jobApplication.getJobid())==null)
-				{
-					return false;
-				}
-
 				jobApplication.setJobappid(getMaxJobapplicationID() + 1);
 				jobApplication.setJobappstatus('N');
 				jobApplication.setApplied_date(new Date());

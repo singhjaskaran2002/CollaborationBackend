@@ -16,6 +16,7 @@ public class BlogComment
 	@Id
 	private int blogcommentid;
 	private String email;
+	private String username;
 	private int  blogid;
 	private String comments;
 	private Date commentedDate;
@@ -51,7 +52,10 @@ public class BlogComment
 	public void setCommentedDate(Date commentedDate) {
 		this.commentedDate = commentedDate;
 	}
-	
-	
-
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 }

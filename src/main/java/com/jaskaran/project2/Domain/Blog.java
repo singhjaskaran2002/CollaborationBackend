@@ -1,5 +1,6 @@
 package com.jaskaran.project2.Domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -8,22 +9,23 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Component
 @Entity
 @Table(name = "C_BLOG")
-public class Blog 
+public class Blog extends BaseDomain implements Serializable
 {
 	@Id
 	private int blogid;
 	private String blogtitle;
-	private String email;
-	private String blogdescription;
+	private String user_created;		// email of the user who created this blog and it is referred from user table
+	private String blogcontent;
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
 	private Date blogcreatedDate;
 	private char blogstatus;
 	private String blogremarks;
-	private int bloglikes;
-	private int blogunlikes;
-	
+	private int bloglikes;	
 	
 	public int getBlogid() {
 		return blogid;
@@ -37,17 +39,17 @@ public class Blog
 	public void setBlogtitle(String blogtitle) {
 		this.blogtitle = blogtitle;
 	}
-	public String getEmail() {
-		return email;
+	public String getUser_created() {
+		return user_created;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUser_created(String user_created) {
+		this.user_created = user_created;
 	}
-	public String getBlogdescription() {
-		return blogdescription;
+	public String getBlogcontent() {
+		return blogcontent;
 	}
-	public void setBlogdescription(String blogdescription) {
-		this.blogdescription = blogdescription;
+	public void setBlogcontent(String blogcontent) {
+		this.blogcontent = blogcontent;
 	}
 	public Date getBlogcreatedDate() {
 		return blogcreatedDate;
@@ -73,13 +75,5 @@ public class Blog
 	public void setBloglikes(int bloglikes) {
 		this.bloglikes = bloglikes;
 	}
-	public int getBlogunlikes() {
-		return blogunlikes;
-	}
-	public void setBlogunlikes(int blogunlikes) {
-		this.blogunlikes = blogunlikes;
-	}
-	
-	
 
 }

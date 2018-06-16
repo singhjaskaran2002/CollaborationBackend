@@ -35,11 +35,11 @@ public class UserDAOTestCase
 	public void addUserTestCase()
 	{
 		user.setUsername("Jaskaran Singh");
-		user.setEmail("jaskaran@gmail.com");
+		user.setEmail("singhjaskaran@gmail.com");
 		user.setMobile("9711131492");
 		user.setPassword("jaskaran");
-		user.setStatus('N');
-		user.setRole('S');
+		//user.setStatus('N');
+		//user.setRole('S');
 		
 		boolean flag = userDAO.saveUser(user);
 		

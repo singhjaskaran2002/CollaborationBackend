@@ -13,6 +13,7 @@ public interface UserDAO
 	public boolean updateUser(User user);
 	public boolean deleteUser(String email);
 	public User getUser(String email);
+	public User getUserByName(String username);
 	public List<User> userList();
 	public User validateUser(String email, String password);
 }
