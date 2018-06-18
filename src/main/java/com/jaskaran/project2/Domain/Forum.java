@@ -23,6 +23,7 @@ public class Forum extends BaseDomain implements Serializable
 	@Id
 	private int forumid;
 	private String email;
+	private String loginname;
 	private String forumtitle;
 	private String forumcontent;
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
@@ -76,6 +77,14 @@ public class Forum extends BaseDomain implements Serializable
 	}
 	public void setForumstatus(char forumstatus) {
 		this.forumstatus = forumstatus;
+	}
+
+	public String getLoginname() {
+		return loginname;
+	}
+
+	public void setLoginname(String loginname) {
+		this.loginname = loginname;
 	}
 	
 	

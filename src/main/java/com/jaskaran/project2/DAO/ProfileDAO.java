@@ -8,6 +8,6 @@ import com.jaskaran.project2.Domain.Profile;
 public interface ProfileDAO 
 {
 	public boolean uploadProfile(Profile Profile);
-	public Profile getProfile(String email);
+	public Profile getProfile(String loginname);
 	
 }

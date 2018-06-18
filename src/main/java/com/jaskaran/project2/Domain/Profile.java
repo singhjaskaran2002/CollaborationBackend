@@ -12,9 +12,9 @@ import org.springframework.stereotype.Component;
 public class Profile 
 {
 	@Id
-	private String email;
+	private String loginname;
 	private byte[] profilepicture;
-	private String username;
+	
 	
 	public byte[] getProfilepicture() {
 		return profilepicture;
@@ -22,17 +22,12 @@ public class Profile
 	public void setProfilepicture(byte[] profilepicture) {
 		this.profilepicture = profilepicture;
 	}
-	public String getEmail() {
-		return email;
+	public String getLoginname() {
+		return loginname;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setLoginname(String loginname) {
+		this.loginname = loginname;
 	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
+	
 	
 }

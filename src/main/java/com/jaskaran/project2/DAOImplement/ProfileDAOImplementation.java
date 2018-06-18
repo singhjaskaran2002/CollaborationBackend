@@ -26,8 +26,8 @@ public class ProfileDAOImplementation implements ProfileDAO
 		}
 	}
 
-	public Profile getProfile(String email) {
-		return (Profile) sessionFactory.getCurrentSession().get(Profile.class, email);
+	public Profile getProfile(String loginname) {
+		return (Profile) sessionFactory.getCurrentSession().get(Profile.class, loginname);
 	}
 	
 	

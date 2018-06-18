@@ -48,10 +48,10 @@ public class UserDAOImplementation implements UserDAO
 		}
 	}
 
-	public boolean deleteUser(String email) {
+	public boolean deleteUser(String loginname) {
 		try {	
 						// before delete, first check whether the record
-						User user = getUser(email);
+						User user = getUser(loginname);
 						//existing or not
 						//if the record does not exist, simply return false;
 						if(user==null)
@@ -69,8 +69,8 @@ public class UserDAOImplementation implements UserDAO
 		}
 	}
 
-	public User getUser(String email) {
-		return sessionFactory.getCurrentSession().get(User.class, email);
+	public User getUser(String loginname) {
+		return sessionFactory.getCurrentSession().get(User.class, loginname);
 	}
 
 	public List<User> userList() {

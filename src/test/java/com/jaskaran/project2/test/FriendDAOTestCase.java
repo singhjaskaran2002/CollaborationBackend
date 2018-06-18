@@ -60,10 +60,10 @@ public class FriendDAOTestCase {
 		}
 	}
 	
-	/*@Test
+	@Test
 	public void suggestedFriendList()
 	{
-		List<User> users = friendDAO.suggestedPeopleList("Jaskaran Singh");
+		List<User> users = friendDAO.suggestedPeopleList("jaskaran");
 		boolean flag = users.isEmpty();
 		System.out.println(users.size());
 		assertEquals("friend list test case", false, flag);
@@ -71,7 +71,7 @@ public class FriendDAOTestCase {
 		{
 			System.out.println("People Name: "+u.getUsername());
 		}
-	}*/
+	}
 	
 	@Test
 	public void deleteFriendRequest()

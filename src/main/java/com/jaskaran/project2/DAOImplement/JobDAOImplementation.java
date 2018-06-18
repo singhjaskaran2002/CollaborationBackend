@@ -150,8 +150,8 @@ public class JobDAOImplementation implements JobDAO
 		return true;
 	}
 
-	public List<JobApplication> jobApplicationList(String email) {
-		return sessionFactory.getCurrentSession().createCriteria(JobApplication.class).add(Restrictions.eq("email", email)).list();
+	public List<JobApplication> jobApplicationList(String loginname) {
+		return sessionFactory.getCurrentSession().createCriteria(JobApplication.class).add(Restrictions.eq("loginname", loginname)).list();
 	}
 
 	public boolean deleteJob(int jobid) {

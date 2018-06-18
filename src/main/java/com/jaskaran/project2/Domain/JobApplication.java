@@ -24,6 +24,8 @@ public class JobApplication extends BaseDomain implements Serializable
 	private int jobid;
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
 	private Date applied_date;
+	private String jobtitle;
+	private String jobdescription;
 	private char jobappstatus;
 	private String reason;
 	
@@ -63,6 +65,18 @@ public class JobApplication extends BaseDomain implements Serializable
 	}
 	public void setReason(String reason) {
 		this.reason = reason;
+	}
+	public String getJobtitle() {
+		return jobtitle;
+	}
+	public void setJobtitle(String jobtitle) {
+		this.jobtitle = jobtitle;
+	}
+	public String getJobdescription() {
+		return jobdescription;
+	}
+	public void setJobdescription(String jobdescription) {
+		this.jobdescription = jobdescription;
 	}
 	
 }
