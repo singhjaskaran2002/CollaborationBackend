@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.jaskaran.project2.DAO.BlogDAO;
 import com.jaskaran.project2.Domain.Blog;
+import com.jaskaran.project2.Domain.BlogComment;
 
 @Transactional
 @Repository("blogDAO")
@@ -119,6 +120,38 @@ public class BlogDAOImplementation implements BlogDAO
 
 	public List<Blog> blogList() {
 		return sessionFactory.getCurrentSession().createQuery("from Blog").list();
+	}
+	
+	
+	/******************************************************** related to blog comment ****************************************************************/
+	
+	private int getMaxBlogCommentID() {
+		int maxValue = 100;
+		try {
+				maxValue = (Integer) sessionFactory.getCurrentSession().createQuery("select max(blogcommentid) from BlogComment").uniqueResult();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return 100;
+			}
+			return maxValue;
+	}
+	
+	public boolean saveBlogComment(BlogComment blogComment) {
+		try {
+			blogComment.setBlogcommentid(getMaxBlogCommentID() + 1);
+			blogComment.setCommentedDate(new Date());
+			sessionFactory.getCurrentSession().save(blogComment);
+			return true;
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public List<BlogComment> blogCommentList(int blogid) {
+		return sessionFactory.getCurrentSession().createCriteria(BlogComment.class).add(Restrictions.eq("blogid", blogid)).list();
 	}
 
 }

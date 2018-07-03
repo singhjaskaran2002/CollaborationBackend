@@ -7,7 +7,7 @@ com\jaskaran\project2\Domain\Job.class
 com\jaskaran\project2\DAO\FriendDAO.class
 com\jaskaran\project2\DAO\ProfileDAO.class
 com\jaskaran\project2\DAO\JobDAO.class
-com\jaskaran\project2\DAO\BlogCommentDAO.class
+com\jaskaran\project2\Domain\OutputMessage.class
 com\jaskaran\project2\Domain\Profile.class
 com\jaskaran\project2\Domain\Blog.class
 com\jaskaran\project2\Domain\BaseDomain.class
@@ -16,9 +16,9 @@ com\jaskaran\project2\DAOImplement\FriendDAOImplementation.class
 com\jaskaran\project2\DAOImplement\JobDAOImplementation.class
 com\jaskaran\project2\DAO\BlogDAO.class
 com\jaskaran\project2\Domain\JobApplication.class
-com\jaskaran\project2\DAOImplement\BlogCommentDAOImplementation.class
 com\jaskaran\project2\Domain\User.class
 com\jaskaran\project2\Domain\BlogComment.class
 com\jaskaran\project2\Configuration\ApplicationContextConfig.class
 com\jaskaran\project2\DAOImplement\UserDAOImplementation.class
+com\jaskaran\project2\Domain\Message.class
 com\jaskaran\project2\DAO\UserDAO.class

@@ -9,12 +9,12 @@ C:\Users\Pc\Project\collaborationBackend\src\main\java\com\jaskaran\project2\Dom
 C:\Users\Pc\Project\collaborationBackend\src\main\java\com\jaskaran\project2\Domain\Forum.java
 C:\Users\Pc\Project\collaborationBackend\src\main\java\com\jaskaran\project2\Domain\Job.java
 C:\Users\Pc\Project\collaborationBackend\src\main\java\com\jaskaran\project2\Domain\JobApplication.java
-C:\Users\Pc\Project\collaborationBackend\src\main\java\com\jaskaran\project2\DAO\BlogCommentDAO.java
 C:\Users\Pc\Project\collaborationBackend\src\main\java\com\jaskaran\project2\DAO\FriendDAO.java
 C:\Users\Pc\Project\collaborationBackend\src\main\java\com\jaskaran\project2\Domain\BaseDomain.java
+C:\Users\Pc\Project\collaborationBackend\src\main\java\com\jaskaran\project2\Domain\OutputMessage.java
 C:\Users\Pc\Project\collaborationBackend\src\main\java\com\jaskaran\project2\DAOImplement\JobDAOImplementation.java
 C:\Users\Pc\Project\collaborationBackend\src\main\java\com\jaskaran\project2\DAO\ProfileDAO.java
-C:\Users\Pc\Project\collaborationBackend\src\main\java\com\jaskaran\project2\DAOImplement\BlogCommentDAOImplementation.java
+C:\Users\Pc\Project\collaborationBackend\src\main\java\com\jaskaran\project2\Domain\Message.java
 C:\Users\Pc\Project\collaborationBackend\src\main\java\com\jaskaran\project2\DAOImplement\FriendDAOImplementation.java
 C:\Users\Pc\Project\collaborationBackend\src\main\java\com\jaskaran\project2\DAO\UserDAO.java
 C:\Users\Pc\Project\collaborationBackend\src\main\java\com\jaskaran\project2\Domain\BlogComment.java

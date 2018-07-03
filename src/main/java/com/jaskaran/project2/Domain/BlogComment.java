@@ -8,6 +8,8 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Component
 @Entity
 @Table(name = "C_BLOG_COMMENT")
@@ -15,10 +17,10 @@ public class BlogComment
 {
 	@Id
 	private int blogcommentid;
-	private String email;
-	private String username;
+	private String loginname;
 	private int  blogid;
 	private String comments;
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
 	private Date commentedDate;
 	
 	
@@ -28,11 +30,11 @@ public class BlogComment
 	public void setBlogcommentid(int blogcommentid) {
 		this.blogcommentid = blogcommentid;
 	}
-	public String getEmail() {
-		return email;
+	public String getLoginname() {
+		return loginname;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setLoginname(String loginname) {
+		this.loginname = loginname;
 	}
 	public int getBlogid() {
 		return blogid;
@@ -52,10 +54,5 @@ public class BlogComment
 	public void setCommentedDate(Date commentedDate) {
 		this.commentedDate = commentedDate;
 	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
+	
 }

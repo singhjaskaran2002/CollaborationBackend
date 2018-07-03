@@ -21,6 +21,7 @@ public class JobApplication extends BaseDomain implements Serializable
 	@Id
 	private int jobappid;
 	private String email;
+	private String loginname;
 	private int jobid;
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
 	private Date applied_date;
@@ -77,6 +78,12 @@ public class JobApplication extends BaseDomain implements Serializable
 	}
 	public void setJobdescription(String jobdescription) {
 		this.jobdescription = jobdescription;
+	}
+	public String getLoginname() {
+		return loginname;
+	}
+	public void setLoginname(String loginname) {
+		this.loginname = loginname;
 	}
 	
 }

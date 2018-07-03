@@ -2,12 +2,11 @@ package com.jaskaran.project2.test;
 
 import static org.junit.Assert.*;
 
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import com.jaskaran.project2.DAO.BlogCommentDAO;
 import com.jaskaran.project2.DAO.BlogDAO;
 import com.jaskaran.project2.Domain.Blog;
 import com.jaskaran.project2.Domain.BlogComment;
@@ -25,10 +24,7 @@ public class BlogDAOTestCase
 	
 	@Autowired
 	private static BlogComment blogComment;
-	
-	@Autowired
-	private static BlogCommentDAO blogCommentDAO;
-	
+		
 	@BeforeClass
 	public static void initialize()
 	{
@@ -38,7 +34,6 @@ public class BlogDAOTestCase
 		blogDAO = (BlogDAO)context.getBean("blogDAO");
 		blog = (Blog)context.getBean("blog");
 		blogComment = (BlogComment) context.getBean("blogComment");
-		blogCommentDAO = (BlogCommentDAO) context.getBean("blogCommentDAO");
 	}
 
 	@Test
@@ -56,9 +51,8 @@ public class BlogDAOTestCase
 	{
 		blogComment.setBlogid(101);
 		blogComment.setComments("good topic");
-		blogComment.setEmail("singhjaskaran@gmail.com");
 		
-		assertEquals("blog comment add test case", true, blogCommentDAO.saveBlogComment(blogComment));
+		assertEquals("blog comment add test case", true, blogDAO.saveBlogComment(blogComment));
 	}
 	
 }

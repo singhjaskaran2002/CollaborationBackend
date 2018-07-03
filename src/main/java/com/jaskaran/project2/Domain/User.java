@@ -20,7 +20,6 @@ public class User extends BaseDomain implements Serializable
 	private String loginname;
 	private String address;
 	private String role;
-	private Character status;
 	private String mobile;
 	
 	public String getMobile() {
@@ -58,12 +57,6 @@ public class User extends BaseDomain implements Serializable
 	}
 	public void setRole(String role) {
 		this.role = role;
-	}
-	public Character getStatus() {
-		return status;
-	}
-	public void setStatus(Character status) {
-		this.status = status;
 	}
 	public String getLoginname() {
 		return loginname;

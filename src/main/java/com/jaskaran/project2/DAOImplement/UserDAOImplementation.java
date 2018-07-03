@@ -20,14 +20,8 @@ public class UserDAOImplementation implements UserDAO
 	@Autowired
 	SessionFactory sessionFactory;
 	public boolean saveUser(User user) {
-		
 		try {
-			if(user.getRole()==null || user.getRole()==" ")
-			{
-				user.setRole("ROLE_USER");
-			}
-			user.setStatus('N');
-			
+			user.setRole("ROLE_USER");
 			sessionFactory.getCurrentSession().save(user);
 			return true;
 		} catch (HibernateException e) {

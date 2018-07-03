@@ -136,12 +136,12 @@ public class JobDAOImplementation implements JobDAO
 	 * else, return false
 	 */
 
-	public boolean isJobAlreadyApplied(String email, int jobid) {
+	public boolean isJobAlreadyApplied(String loginname, int jobid) {
 
 		//select * from JobApplication where emailID = ? and jobID = ?
 		JobApplication jobApplication = (JobApplication) sessionFactory.getCurrentSession()
 				.createCriteria(JobApplication.class)
-				.add(Restrictions.eq("email", email))
+				.add(Restrictions.eq("loginname", loginname))
 				.add(Restrictions.eq("jobid", jobid)).uniqueResult();
 
 		if (jobApplication == null) {
