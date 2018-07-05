@@ -1,7 +1,6 @@
 package com.jaskaran.project2.Domain;
 
 import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;

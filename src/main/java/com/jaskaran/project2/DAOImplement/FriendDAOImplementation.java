@@ -7,7 +7,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import com.jaskaran.project2.DAO.FriendDAO;
 import com.jaskaran.project2.DAO.UserDAO;
 import com.jaskaran.project2.Domain.Friend;

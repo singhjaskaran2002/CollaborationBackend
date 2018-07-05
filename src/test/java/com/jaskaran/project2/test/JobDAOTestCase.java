@@ -86,20 +86,6 @@ public class JobDAOTestCase
 		assertEquals("updating job test case", true ,jobDAO.updateJob(job));
 	}
 	
-	@Test
-	public void isJobOpendSuccessTestCase()
-	{
-	   assertEquals("JobOpened Success test case", true, jobDAO.isJobOpened(103));
-	}
-	
-	@Test
-	public void isJobOpendFailureTestCase()
-	{
-	   assertEquals("JobOpened failure test case", false, jobDAO.isJobOpened(101));
-	}
-	
-	
-	
 	//Related to Job Application
 	
 	

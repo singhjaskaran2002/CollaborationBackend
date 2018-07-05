@@ -1,15 +1,12 @@
 package com.jaskaran.project2.DAOImplement;
 
 import java.util.List;
-
 import javax.transaction.Transactional;
-
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import com.jaskaran.project2.DAO.UserDAO;
 import com.jaskaran.project2.Domain.User;
 

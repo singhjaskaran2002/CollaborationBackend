@@ -2,7 +2,6 @@ package com.jaskaran.project2.DAO;
 
 import java.util.List;
 import org.springframework.stereotype.Component;
-
 import com.jaskaran.project2.Domain.Blog;
 import com.jaskaran.project2.Domain.BlogComment;
 
@@ -10,21 +9,22 @@ import com.jaskaran.project2.Domain.BlogComment;
 public interface BlogDAO 
 {
 	
-	public boolean saveBlog(Blog blog);			// saving a blog
-	public boolean updateBlog(Blog blog);		// updating blog
-	public boolean deleteBlog(int blogid);		// deleting the blog
-	public Blog getBlog(int blogid);			//	getting the blog details
-	public List<Blog> approvedBlogsList(); 		// getting the list of approved blogs
-	public boolean approveBlog(int blogid);		//	to approve the blog
-	public boolean rejectBlog(int blogid);		// to reject the blog
+	public boolean saveBlog(Blog blog);			
+	public boolean updateBlog(Blog blog);	
+	public boolean deleteBlog(int blogid);		
+	public Blog getBlog(int blogid);		
+	public boolean approveBlog(int blogid);		
+	public boolean rejectBlog(int blogid);		
 	public boolean incLikes(int blogid);
 	public List<Blog> blogList();	
 	
 	
 	
-	/***************************************************** related to blog comment *************************************************************************/
+	/********************* related to blog comment ***************/
 	
 	public boolean saveBlogComment(BlogComment blogComment);	
 	public List<BlogComment> blogCommentList(int blogid);
+	public boolean deletecomment(int blogcommentid);
+	public BlogComment getBlogComment(int blogcommentid);
 	
 }

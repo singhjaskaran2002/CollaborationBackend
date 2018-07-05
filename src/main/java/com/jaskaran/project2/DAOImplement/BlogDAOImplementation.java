@@ -2,15 +2,12 @@ package com.jaskaran.project2.DAOImplement;
 
 import java.util.Date;
 import java.util.List;
-
 import javax.transaction.Transactional;
-
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import com.jaskaran.project2.DAO.BlogDAO;
 import com.jaskaran.project2.Domain.Blog;
 import com.jaskaran.project2.Domain.BlogComment;
@@ -153,5 +150,27 @@ public class BlogDAOImplementation implements BlogDAO
 	public List<BlogComment> blogCommentList(int blogid) {
 		return sessionFactory.getCurrentSession().createCriteria(BlogComment.class).add(Restrictions.eq("blogid", blogid)).list();
 	}
+	
+	public BlogComment getComment(int blogcommentid)
+	{
+		return (BlogComment)sessionFactory.getCurrentSession().get(BlogComment.class, blogcommentid);
+	}
+
+	public boolean deletecomment(int blogcommentid) {
+		try {
+			sessionFactory.getCurrentSession().delete(getComment(blogcommentid));
+			return true;
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public BlogComment getBlogComment(int blogcommentid) {
+		return (BlogComment)sessionFactory.getCurrentSession().get(BlogComment.class, blogcommentid);
+	}
+	
+	
 
 }

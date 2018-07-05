@@ -2,15 +2,12 @@ package com.jaskaran.project2.DAOImplement;
 
 import java.util.Date;
 import java.util.List;
-
 import javax.transaction.Transactional;
-
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import com.jaskaran.project2.DAO.JobDAO;
 import com.jaskaran.project2.Domain.Job;
 import com.jaskaran.project2.Domain.JobApplication;
@@ -21,6 +18,9 @@ public class JobDAOImplementation implements JobDAO
 {
 	@Autowired
 	SessionFactory sessionFactory;
+	
+	@Autowired
+	private JobDAO jobDAO;
 	
 	private int getMaxJobID() {
 		int maxValue = 100;
@@ -111,30 +111,15 @@ public class JobDAOImplementation implements JobDAO
 					return false;
 				}
 	}
-
-	public boolean updateJobApplication(JobApplication jobApplication) {
-		try {
-			sessionFactory.getCurrentSession().update(jobApplication);
-			return true;
-		} catch (HibernateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
+	
+	public List<JobApplication> jobApplications()
+	{
+		return sessionFactory.getCurrentSession().createQuery("from JobApplication").list();
 	}
 
 	public List<JobApplication> jobApplicationlist(int jobid) {
 		return sessionFactory.getCurrentSession().createCriteria(JobApplication.class).add(Restrictions.eq("jobid", jobid)).list();
 	}
-
-	public List<JobApplication> jobApplicationlist(int jobid, char jobstatus) {
-		return sessionFactory.getCurrentSession().createCriteria(Job.class).add(Restrictions.eq("jobstatus", jobstatus)).add(Restrictions.eq("jobid", jobid)).list();
-	}
-
-	/**
-	 * This method will return true if the job already applied with this emaild.
-	 * else, return false
-	 */
 
 	public boolean isJobAlreadyApplied(String loginname, int jobid) {
 
@@ -163,6 +148,34 @@ public class JobDAOImplementation implements JobDAO
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	public boolean approveApplication(int jobappid) {
+		JobApplication jobApplication = jobDAO.getApplication(jobappid);
+		try {
+			jobApplication.setJobappstatus('A');
+			return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean rejectApplication(int jobappid) {
+		JobApplication jobApplication = jobDAO.getApplication(jobappid);
+		try {
+			jobApplication.setJobappstatus('R');
+			return true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public JobApplication getApplication(int jobappid) {
+		return sessionFactory.getCurrentSession().get(JobApplication.class, jobappid);
 	}
 	
 	
