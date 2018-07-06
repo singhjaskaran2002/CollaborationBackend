@@ -177,6 +177,17 @@ public class JobDAOImplementation implements JobDAO
 	public JobApplication getApplication(int jobappid) {
 		return sessionFactory.getCurrentSession().get(JobApplication.class, jobappid);
 	}
+
+	public boolean deletejobapp(int jobappid) {
+		try {
+			sessionFactory.getCurrentSession().delete(getApplication(jobappid));
+			return true;
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
 	
 	
 }

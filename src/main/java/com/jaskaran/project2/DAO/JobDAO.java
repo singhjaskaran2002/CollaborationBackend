@@ -22,4 +22,5 @@ public interface JobDAO
 	public boolean approveApplication(int jobappid);
 	public boolean rejectApplication(int jobappid);
 	public JobApplication getApplication(int jobappid);
+	public boolean deletejobapp(int jobappid);
 }
